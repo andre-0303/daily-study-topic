@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"study-topics-cicd/internal/routes"
+	"github.com/gin-gonic/gin"
+)
 	
 func main() {
-	fmt.Println("Daily Topic Study")
+	router := gin.Default()
+	routes.SetupRoutes(router)
+	router.Run(":8080")
 }
