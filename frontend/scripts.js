@@ -5,12 +5,17 @@ const catalog = document.getElementById("catalog");
 const card = document.querySelector(".card");
 const button = document.getElementById("generate-btn");
 
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080/api/topic"
+    : "https://daily-study-topic.onrender.com/api/topic";
+
 async function fetchTopic() {
   try {
     card.classList.remove("is-updating");
     void card.offsetWidth;
 
-    const response = await fetch("http://localhost:8080/api/topic");
+    const response = await fetch(API_URL);
 
     const topic = await response.json();
 
