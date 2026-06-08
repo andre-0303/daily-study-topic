@@ -206,6 +206,28 @@ button:active {
   animation: flicker 0.4s ease;
 }
 
+.loading-tip {
+  display: none;
+  font-family: var(--body-font);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  animation: tipFade 0.5s ease;
+}
+
+.card.is-loading .loading-tip {
+  display: block;
+}
+
+@keyframes tipFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
