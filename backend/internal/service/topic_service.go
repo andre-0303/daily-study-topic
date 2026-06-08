@@ -1,32 +1,18 @@
 package service
 
 import (
-	"math/rand"
 	"study-topics-cicd/internal/models"
+	"study-topics-cicd/internal/repository"
 )
 
-var topics = []models.Topic{
-	{
-		ID:          1,
-		Title:       "Structs em Go",
-		Difficulty:  "intermediário",
-		Description: "Aprenda composição de dados",
-	},
-	{
-		ID:          2,
-		Title:       "Interfaces em Go",
-		Difficulty:  "avançado",
-		Description: "Entenda polimorfismo em Go",
-	},
-	{
-		ID:          3,
-		Title:       "Slices",
-		Difficulty:  "iniciante",
-		Description: "Manipulação dinâmica de arrays",
-	},
+type TopicService struct {
+	repo *repository.TopicRepository
 }
 
-func GetRandomTopic() models.Topic {
-	randomIndex := rand.Intn(len(topics))
-	return topics[randomIndex]
+func NewTopicService(repo *repository.TopicRepository) *TopicService {
+	return &TopicService{repo: repo}
+}
+
+func (s *TopicService) GetRandomTopic() (models.Topic, error) {
+	return s.repo.GetRandom()
 }
