@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,440;0,9..144,600;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap");
+
+:root {
+  --paper: #efe7d8;
+  --card: #faf6ec;
+  --ink: #2c2117;
+  --ink-soft: #6b5d4b;
+  --line: #d9cbb0;
+  --stamp: #a8402c;
+  --display: "Fraunces", Georgia, serif;
+  --body-font: "Newsreader", Georgia, serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--ink);
+  background: var(--paper);
+  background-image: radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.5), transparent 40%),
+    radial-gradient(circle at 88% 82%, rgba(255, 255, 255, 0.35), transparent 45%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.kicker {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: rise 0.6s ease-out 0.05s forwards;
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(28px, 5vw, 40px);
+  letter-spacing: -0.01em;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: rise 0.6s ease-out 0.15s forwards;
+}
+
+.card {
+  position: relative;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 42px 38px 36px 64px;
+  box-shadow: 12px 16px 0 rgba(44, 33, 23, 0.07);
+  transform: rotate(-1.1deg);
+  opacity: 0;
+  animation: settle 0.7s cubic-bezier(0.16, 0.84, 0.24, 1) 0.28s forwards;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background-image: radial-gradient(circle 4px, var(--paper) 4px, transparent 4.2px);
+  background-size: 14px 30px;
+  background-position: 0 18px;
+  background-repeat: repeat-y;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  bottom: 20px;
+  border-left: 1px dashed var(--line);
+}
+
+.card__index {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+#title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+#difficulty {
+  display: inline-block;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stamp);
+  border: 1.5px solid var(--stamp);
+  border-radius: 3px 9px 4px 8px / 9px 4px 8px 3px;
+  padding: 5px 14px;
+  margin-bottom: 22px;
+  position: relative;
+  transform: rotate(-3deg);
+}
+
+#difficulty::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--stamp);
+  border-radius: inherit;
+  opacity: 0.35;
+}
+
+#description {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 30px;
+  max-width: 38ch;
+}
+
+button {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--card);
+  background: var(--ink);
+  border: none;
+  padding: 14px 26px;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--stamp);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--stamp);
+}
+
+button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--stamp);
+}
+
+.footnote {
+  margin-top: 22px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  opacity: 0;
+  animation: rise 0.6s ease-out 0.5s forwards;
+}
+
+.footnote em {
+  font-style: italic;
+  color: var(--stamp);
+}
+
+.card.is-updating #title,
+.card.is-updating #difficulty,
+.card.is-updating #description {
+  animation: flicker 0.4s ease;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: rotate(-4deg) translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.1deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes flicker {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 36px 24px 32px 56px;
+  }
+
+  .card::before {
+    left: 18px;
+  }
+
+  .card::after {
+    left: 40px;
+  }
+}
