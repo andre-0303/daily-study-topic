@@ -1,19 +1,19 @@
-name: Backend CI
+name: Backend CI/CD
 
 on:
   push:
     branches:
-      - develop
       - main
+      - develop
       - feature/**
 
   pull_request:
     branches:
-      - develop
       - main
+      - develop
 
 jobs:
-  test-and-build:
+  test-build-deploy:
     runs-on: ubuntu-latest
 
     defaults:
@@ -32,11 +32,16 @@ jobs:
       - name: Install dependencies
         run: go mod tidy
 
-      - name: Format check
+      - name: Format code
         run: go fmt ./...
 
       - name: Run tests
         run: go test ./...
 
-      - name: Build application
+      - name: Build app
         run: go build -o app cmd/api/main.go
+
+      - name: Deploy to Render
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
