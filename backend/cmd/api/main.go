@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"study-topics-cicd/internal/routes"
 
 	"github.com/gin-contrib/cors"
@@ -14,5 +16,13 @@ func main() {
 
 	routes.SetupRoutes(router)
 
-	router.Run(":8080")
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Printf("Server running on port %s\n", port)
+
+	router.Run(":" + port)
 }
