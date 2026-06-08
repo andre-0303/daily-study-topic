@@ -1,5 +1,5 @@
 <div align="center">
-<img src="frontend/images/50db9067-9206-43f7-b267-9c626311a853.png" alt="Daily Topic Study" width="120"/>
+<img src="frontend/images/50db9067-9206-43f7-b267-9c626311a853.png" alt="Daily Topic Study" width="250"/>
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
