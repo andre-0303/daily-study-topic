@@ -1,6 +1,7 @@
 const title = document.getElementById("title");
 const difficulty = document.getElementById("difficulty");
 const description = document.getElementById("description");
+const catalog = document.getElementById("catalog");
 const button = document.getElementById("generate-btn");
 
 const API_URL =
@@ -22,10 +23,12 @@ async function fetchTopic() {
     title.textContent = topic.title;
     difficulty.textContent = topic.difficulty;
     description.textContent = topic.description;
+    catalog.textContent = "Nº " + String(topic.id).padStart(3, "0");
   } catch (error) {
     title.textContent = "Erro ao carregar";
     difficulty.textContent = "";
     description.textContent = "Não foi possível carregar os dados.";
+    catalog.textContent = "Nº 000";
 
     console.error(error);
   }
