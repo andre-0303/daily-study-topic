@@ -212,22 +212,18 @@ button:active {
   font-size: 13px;
   line-height: 1.6;
   color: var(--ink-soft);
+  text-align: left;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   margin-top: 0;
-  padding-top: 0;
-  border-top: 1px dashed transparent;
-  transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.4s ease,
-    padding-top 0.4s ease, border-color 0.4s ease;
+  transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.35s ease;
 }
 
-.card.is-loading .loading-tip {
-  max-height: 120px;
+.card.is-loading + .loading-tip {
+  max-height: 80px;
   opacity: 1;
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top-color: var(--line);
+  margin-top: 18px;
 }
 
 
