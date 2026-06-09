@@ -30,24 +30,27 @@ const tips = [
 ];
 
 let tipInterval = null;
+let tipShowTimeout = null;
 let tipIndex = 0;
 
 function startTips() {
   tipIndex = Math.floor(Math.random() * tips.length);
   loadingTip.textContent = tips[tipIndex];
-  card.classList.add("is-loading");
 
-  tipInterval = setInterval(() => {
-    tipIndex = (tipIndex + 1) % tips.length;
-    loadingTip.textContent = tips[tipIndex];
-    loadingTip.style.animation = "none";
-    loadingTip.offsetHeight;
-    loadingTip.style.animation = "";
-  }, 3500);
+  tipShowTimeout = setTimeout(() => {
+    card.classList.add("is-loading");
+
+    tipInterval = setInterval(() => {
+      tipIndex = (tipIndex + 1) % tips.length;
+      loadingTip.textContent = tips[tipIndex];
+    }, 3500);
+  }, 400);
 }
 
 function stopTips() {
+  clearTimeout(tipShowTimeout);
   clearInterval(tipInterval);
+  tipShowTimeout = null;
   tipInterval = null;
   card.classList.remove("is-loading");
 }
