@@ -13,7 +13,7 @@ on:
       - develop
 
 jobs:
-  test-build-deploy:
+  backend-pipeline:
     runs-on: ubuntu-latest
 
     defaults:
@@ -38,8 +38,34 @@ jobs:
       - name: Run tests
         run: go test ./...
 
-      - name: Build app
+      - name: Build Go app
         run: go build -o app cmd/api/main.go
+
+      - name: Build Docker image
+        run: |
+          docker build -t study-topics-api .
+
+      - name: Run Docker container
+        run: |
+          docker run -d \
+            -p 8080:8080 \
+            --name study-topics-container \
+            study-topics-api
+
+      - name: Wait for app startup
+        run: sleep 10
+
+      - name: Health Check
+        run: |
+          curl --fail http://localhost:8080/health
+
+      - name: Stop container
+        if: always()
+        run: docker stop study-topics-container
+
+      - name: Remove container
+        if: always()
+        run: docker rm study-topics-container
 
       - name: Deploy to Render
         if: github.ref == 'refs/heads/main'
